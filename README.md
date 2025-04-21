@@ -1,37 +1,80 @@
-# AI-Powered Route Optimization API
+# AI-Powered Route Optimization API for E-Commerce Platforms
 
-A scalable, AI-driven Route Optimization API tailored for modern e-commerce logistics. This API provides real-time, optimized delivery routes that reduce operational costs, improve delivery accuracy, and enhance logistics visibility.
+A NestJS-based API service that provides intelligent route optimization for e-commerce delivery operations. The service uses advanced algorithms to optimize delivery routes based on multiple factors including time windows, vehicle capacity, traffic conditions, and delivery priorities.
 
 ## Features
 
-- AI-Driven Route Optimization
-- Real-Time Traffic Data Integration
-- Multi-Vehicle / Multi-Depot Optimization
-- Predictive Delivery Time Estimations
-- Real-Time Webhooks for Tracking
-- Waypoint-Based Route Information
-- Comprehensive Analytics Dashboard API
-- Fully Documented with Swagger/OpenAPI
+### 1. Route Optimization
+- Real-time route calculation and optimization using custom algorithms
+- Multi-stop delivery planning with efficient path finding
+- Priority-based order sequencing
+- Time window constraints handling
+- Vehicle capacity management
+- Traffic-aware routing with configurable traffic factors
+- Distance and duration calculations using Haversine formula
+- Custom waypoint generation and optimization
 
-## Tech Stack
+### 2. Webhooks System
+- Real-time delivery status updates
+- Event-driven architecture
+- Status tracking for individual orders
+- Delivery history tracking
+- Metadata support for additional information
 
-- Backend Framework: Nest.js
-- Database: PostgreSQL
-- API Documentation: Swagger (OpenAPI 3.0)
-- Mapping & Traffic: Google Maps API / Mapbox Directions API
+### 3. Analytics
+- Route performance metrics
+- Delivery efficiency analysis
+- Historical data tracking
+- Performance reporting
 
-## Prerequisites
+## Project Structure
 
-- Node.js (v16 or higher)
-- PostgreSQL (v12 or higher)
-- npm or yarn
+```
+src/
+├── analytics/                 # Analytics module
+│   ├── dto/                  # Data Transfer Objects
+│   ├── entities/             # Database entities
+│   ├── analytics.controller.ts
+│   ├── analytics.service.ts
+│   └── analytics.module.ts
+├── route-optimization/       # Route optimization module
+│   ├── dto/                 # Data Transfer Objects
+│   ├── entities/            # Database entities
+│   ├── route-optimization.controller.ts
+│   ├── route-optimization.service.ts
+│   └── route-optimization.module.ts
+├── webhooks/                # Webhooks module
+│   ├── dto/                # Data Transfer Objects
+│   ├── entities/           # Database entities
+│   ├── webhooks.controller.ts
+│   ├── webhooks.service.ts
+│   └── webhooks.module.ts
+├── app.module.ts           # Main application module
+└── main.ts                # Application entry point
+```
 
-## Installation
+## API Endpoints
+
+### Route Optimization
+- `POST /route-optimization/optimize` - Generate optimized delivery routes
+- `GET /route-optimization/routes` - Get all optimized routes
+- `GET /route-optimization/routes/:id` - Get specific route details
+
+### Webhooks
+- `POST /webhooks/delivery-status` - Update delivery status
+- `GET /webhooks/delivery-status/:routeId/:orderId` - Get delivery status
+- `GET /webhooks/delivery-history/:routeId` - Get delivery history
+
+### Analytics
+- `GET /analytics/route-performance/:routeId` - Get route performance metrics
+- `GET /analytics/delivery-efficiency` - Get delivery efficiency metrics
+
+## Setup and Installation
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/route-optimization-api.git
-cd route-optimization-api
+git clone [repository-url]
+cd [project-directory]
 ```
 
 2. Install dependencies:
@@ -39,95 +82,65 @@ cd route-optimization-api
 npm install
 ```
 
-3. Create a `.env` file in the root directory with the following variables:
-```env
-DB_HOST=localhost
-DB_PORT=5432
-DB_USERNAME=postgres
-DB_PASSWORD=your_password
-DB_DATABASE=route_optimization
-API_URL=http://localhost:3000
-GOOGLE_MAPS_API_KEY=your_api_key
-```
-
-4. Start the development server:
+3. Set up environment variables:
 ```bash
-npm run start:dev
+cp .env.example .env
+# Edit .env with your configuration
 ```
 
-The API will be available at `http://localhost:3000`.
+4. Initialize the database:
+```bash
+npm run db:init
+```
+
+5. Start the development server:
+```bash
+npm run dev
+```
+
+## Environment Variables
+
+- `PORT` - Server port (default: 3000)
+- `DATABASE_URL` - Database connection string
+- `NODE_ENV` - Environment (development/production)
+- `API_KEY` - API authentication key
+- `TRAFFIC_FACTOR` - Traffic multiplier for duration calculations (default: 1.5)
+
+## Development
+
+### Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build the application
+- `npm run start` - Start production server
+- `npm run test` - Run tests
+- `npm run test:watch` - Run tests in watch mode
+- `npm run test:cov` - Generate test coverage
+- `npm run test:debug` - Debug tests
+- `npm run test:e2e` - Run end-to-end tests
+- `npm run test:all` - Run all tests including linting
+- `npm run db:init` - Initialize database
 
 ## API Documentation
 
-Once the server is running, you can access the Swagger documentation at:
-```
-http://localhost:3000/api/docs
-```
+The API documentation is available via Swagger UI at `/api/docs` when running the server.
 
-## API Endpoints
+## Testing
 
-### POST /api/optimize-routes
-Optimizes delivery routes based on provided orders, vehicles, and constraints.
-
-### GET /api/routes/{routeId}
-Retrieves a previously computed route with live updates.
-
-### POST /api/webhooks/status
-Accepts delivery status updates from driver apps.
-
-### GET /api/analytics
-Returns delivery route efficiency metrics and performance KPIs.
-
-## Example Usage
-
-```typescript
-// Example request to optimize routes
-const response = await fetch('http://localhost:3000/api/optimize-routes', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify({
-    orders: [
-      {
-        id: "101",
-        address: "123 Main St",
-        priority: 1,
-        time_window: "9:00-12:00",
-        location: { lat: 40.7157, lng: -74.0152 }
-      }
-    ],
-    vehicles: [
-      {
-        id: "v1",
-        capacity: 50,
-        start_location: { lat: 40.7128, lng: -74.0060 }
-      }
-    ],
-    depots: [
-      {
-        id: "d1",
-        name: "Warehouse 1",
-        location: { lat: 40.7128, lng: -74.0060 }
-      }
-    ],
-    constraints: {
-      max_distance: 100,
-      avoid_highways: false,
-      traffic_enabled: true
-    }
-  })
-});
-```
+The project includes comprehensive testing:
+- Unit tests for individual components
+- Integration tests for module interactions
+- End-to-end tests for API endpoints
+- Test coverage reporting
 
 ## Contributing
 
 1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+2. Create your feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details. 
+This project is licensed under the MIT License - see the LICENSE file for details. 

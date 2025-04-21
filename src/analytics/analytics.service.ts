@@ -14,15 +14,23 @@ export class AnalyticsService {
   ) {}
 
   async getRouteAnalytics(startDate: Date, endDate: Date) {
+    // Set start date to beginning of day (00:00:00)
+    const startOfDay = new Date(startDate);
+    startOfDay.setHours(0, 0, 0, 0);
+
+    // Set end date to end of day (23:59:59.999)
+    const endOfDay = new Date(endDate);
+    endOfDay.setHours(23, 59, 59, 999);
+
     const routes = await this.routeRepository.find({
       where: {
-        created_at: Between(startDate, endDate),
+        created_at: Between(startOfDay, endOfDay),
       },
     });
 
     const deliveryStatuses = await this.deliveryStatusRepository.find({
       where: {
-        created_at: Between(startDate, endDate),
+        created_at: Between(startOfDay, endOfDay),
       },
     });
 

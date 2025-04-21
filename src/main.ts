@@ -16,6 +16,13 @@ async function bootstrap() {
     forbidNonWhitelisted: true,
   }));
 
+  // Enable CORS
+  app.enableCors({
+    origin: true, // Allow all origins
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    credentials: true,
+  });
+
   // Configure Swagger
   const config = new DocumentBuilder()
     .setTitle('Route Optimization API')
@@ -27,9 +34,6 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api/docs', app, document);
 
-  // Enable CORS
-  app.enableCors();
-  
   await app.listen(3000);
 }
 bootstrap(); 
