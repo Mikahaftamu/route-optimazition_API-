@@ -66,8 +66,7 @@ src/
 - `GET /webhooks/delivery-history/:routeId` - Get delivery history
 
 ### Analytics
-- `GET /analytics/route-performance/:routeId` - Get route performance metrics
-- `GET /analytics/delivery-efficiency` - Get delivery efficiency metrics
+- `GET /analytics - Get route performance metrics
 
 ## Setup and Installation
 
