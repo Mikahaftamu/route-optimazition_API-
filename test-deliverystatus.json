@@ -1,0 +1,16 @@
+{
+    "route_id": "9c285dcc-c154-45b1-8cde-0295e09c1f61",
+    "order_id": "ORD-001",
+    "status": "delivered",
+    "metadata": {
+        "location": {
+            "lat": 13.4890,
+            "lng": 39.4705
+        },
+        "estimated_arrival": "2024-03-15T10:00:00Z",
+        "actual_arrival": "2024-03-15T09:45:00Z",
+        "notes": "Delivery completed at Mekelle University Administration Building"
+    }
+}
+
+

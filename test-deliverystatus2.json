@@ -1,0 +1,14 @@
+{
+    "route_id": "9c285dcc-c154-45b1-8cde-0295e09c1f61",
+    "order_id": "ORD-003",
+    "status": "delivered",
+    "metadata": {
+        "location": {
+            "lat": 13.4910,
+            "lng": 39.4720
+        },
+        "estimated_arrival": "2024-03-15T12:00:00Z",
+        "actual_arrival": "2024-03-15T12:15:00Z",
+        "notes": "Delivery completed at Mekelle Industrial Park Gate 2"
+    }
+}

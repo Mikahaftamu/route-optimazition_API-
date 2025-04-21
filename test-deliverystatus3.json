@@ -1,0 +1,14 @@
+{
+    "route_id": "9c285dcc-c154-45b1-8cde-0295e09c1f61",
+    "order_id": "ORD-002",
+    "status": "delivered",
+    "metadata": {
+        "location": {
+            "lat": 13.4835,
+            "lng": 39.4660
+        },
+        "estimated_arrival": "2024-03-15T11:00:00Z",
+        "actual_arrival": "2024-03-15T10:55:00Z",
+        "notes": "Delivery completed at Ayder Referral Hospital Main Gate"
+    }
+}

@@ -1,0 +1,86 @@
+{
+    "orders": [
+      {
+        "id": "ORD-001",
+        "address": "Mekelle University Administration Building, Mekelle",
+        "priority": 1,
+        "time_window": "08:30-11:00",
+        "location": {
+          "lat": 13.4890,
+          "lng": 39.4705
+        }
+      },
+      {
+        "id": "ORD-002",
+        "address": "Ayder Referral Hospital Main Gate, Mekelle",
+        "priority": 2,
+        "time_window": "09:00-12:30",
+        "location": {
+          "lat": 13.4835,
+          "lng": 39.4660
+        }
+      },
+      {
+        "id": "ORD-003",
+        "address": "Mekelle Industrial Park Gate 2, Mekelle",
+        "priority": 3,
+        "time_window": "10:00-13:30",
+        "location": {
+          "lat": 13.4910,
+          "lng": 39.4720
+        }
+      },
+      {
+        "id": "ORD-004",
+        "address": "Quiha Health Center, Quiha",
+        "priority": 2,
+        "time_window": "09:00-11:30",
+        "location": {
+          "lat": 13.5000,
+          "lng": 39.4900
+        }
+      }
+    ],
+    "vehicles": [
+      {
+        "id": "VEH-01",
+        "capacity": 60,
+        "start_location": {
+          "lat": 13.4850,
+          "lng": 39.4650
+        }
+      },
+      {
+        "id": "VEH-02",
+        "capacity": 80,
+        "start_location": {
+          "lat": 13.4900,
+          "lng": 39.4700
+        }
+      }
+    ],
+    "depots": [
+      {
+        "id": "DEPOT-01",
+        "name": "Mekelle Central Logistics Hub",
+        "location": {
+          "lat": 13.4850,
+          "lng": 39.4650
+        }
+      },
+      {
+        "id": "DEPOT-02",
+        "name": "Northern Distribution Center",
+        "location": {
+          "lat": 13.4900,
+          "lng": 39.4700
+        }
+      }
+    ],
+    "constraints": {
+      "max_distance": 45,
+      "avoid_highways": true,
+      "traffic_enabled": true
+    }
+  }
+  
